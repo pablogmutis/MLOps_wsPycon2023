@@ -1,5 +1,5 @@
 name: Preprocess Raw Data like artifact to wandb
-#comentario
+
 on:
   workflow_run:
     workflows: ["Load Raw Data like artifact to wandb"]
@@ -11,6 +11,7 @@ on:
       - main
     paths:
       - 'src/data/preprocess.py'
+#otro
 
 jobs:
   preprocess_data:
