@@ -20,9 +20,14 @@ Después, en la carpeta de **workflows**, se agregaron dos nuevos archivos: **bu
 
 Una vez creados los workflows, volvemos a los scripts en la parte de model y hacemos una pequeña modificación (en este caso, se agregó un comentario: #comment). Luego, se le da click a **commit changes** y vamos a la sección de **actions**, donde veremos que empezó el proceso automatizado de update tanto de build_regresion como de train_regresion.
 
-<img width="502" alt="Captura de Pantalla 2025-04-25 a la(s) 10 32 22 a m" src="https://github.com/user-attachments/assets/b49a95e4-8bfa-4f84-b2f8-a56abbe826cf" />
+<img width="1055" alt="Captura de Pantalla 2025-04-25 a la(s) 12 01 14 p m" src="https://github.com/user-attachments/assets/ad36b2b3-7ff7-47ff-be37-38e328d5983a" />
+
+<img width="502" alt="Captura de Pantalla 2025-04-25 a la(s) 10 32 22 a m" src="https://github.com/user-attachments/assets/b49a95e4-8bfa-4f84-b2f8-a56abbe826cf"/> 
+
 
 Tras ejecutar todos los pasos del procedimiento, podremos ver en la interfaz de lineage de Wandb el pipeline del proyecto.
+
+<img width="1026" alt="Captura de Pantalla 2025-04-25 a la(s) 12 02 16 p m" src="https://github.com/user-attachments/assets/b839f58a-2c5f-4766-8171-a1004daa51b6" />
 
 
 
