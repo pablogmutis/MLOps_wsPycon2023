@@ -173,4 +173,8 @@ def evaluate_and_log_regression(experiment_id='99', config=None):
         model.to(device)
 
         criterion = nn.MSELoss()
-        avg_loss = evaluate_regression(model,
+        avg_loss = evaluate_regression(model, test_loader, criterion)
+
+        run.summary.update({"loss": avg_loss})
+        wandb.log({"test/loss": avg_loss})
+        print(f"Test Loss: {avg_loss:.6f}")
