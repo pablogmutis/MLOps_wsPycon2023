@@ -20,7 +20,7 @@ if not os.path.exists("./model"):
     os.makedirs("./model")
 
 # Data parameters testing para regresión lineal simple
-input_dim = 1  # Regresión lineal simple tiene una sola característica de entrada
+input_dim = 1   # Regresión lineal simple tiene una sola característica de entrada
 output_dim = 1 # Regresión lineal simple predice un solo valor
 
 # Definición de un modelo lineal simple
@@ -32,7 +32,7 @@ class LinearRegressor(nn.Module):
     def forward(self, x):
         return self.linear(x)
 
-def build_model_and_log_regression(config, model, model_name="SimpleLinearRegression", model_description="Simple Linear Regression Model"):
+def build_model_and_log_regression(config, model, model_name="simple-linear-regression", model_description="Simple Linear Regression Model"): # Changed model_name here
     with wandb.init(project="MLOps-Pycon2023-Regression",
                     name=f"initialize-{model_name}-ExecId-{args.IdExecution}",
                     job_type="initialize-model", config=config) as run:
@@ -55,10 +55,10 @@ def build_model_and_log_regression(config, model, model_name="SimpleLinearRegres
 
 # Configuración del modelo para regresión lineal simple
 regression_config = {"input_dim": input_dim,
-                       "output_dim": output_dim}
+                    "output_dim": output_dim}
 
 # Instanciación del modelo de regresión lineal
 linear_model = LinearRegressor(**regression_config)
 
 # Construcción y registro del modelo
-build_model_and_log_regression(regression_config, linear_model, "SimpleLinearRegression", "Simple Linear Regression Model")
+build_model_and_log_regression(regression_config, linear_model, "simple-linear-regression", "Simple Linear Regression Model") # Changed model_name here too
