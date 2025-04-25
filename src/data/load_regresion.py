@@ -4,7 +4,7 @@ from torch.utils.data import TensorDataset
 import argparse
 import wandb
 
-#commen
+#comment
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--IdExecution', type=str, help='ID de la ejecución')
