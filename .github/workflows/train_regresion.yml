@@ -25,5 +25,7 @@ jobs:
         pip install -r requirements.txt
     - name: Login to WandB
       run: wandb login ${{ secrets.WANDB_API_KEY }}
-    - name: Run train_regresion.py # Nombre del script a ejecutar
-      run: python src/model/train_regresion.py --IdExecution ${{ github.run_number }}
+    - name: Run train_regresion.py from root # Nombre del paso modificado
+      run: |
+        cd ${{ github.workspace }} # Asegurarse de estar en la raíz del workspace
+        python src/model/train_regresion.py --IdExecution ${{ github.run_number }}
