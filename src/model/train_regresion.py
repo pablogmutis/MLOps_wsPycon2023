@@ -1,11 +1,11 @@
 import torch
-import torch.nn.functional as F
-from torch import nn
-from torch.utils.data import TensorDataset, DataLoader
-import os
-import argparse
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
 import wandb
-from src.model.linear_regressor import LinearRegressor
+import argparse
+import os
+from src.model.linear_regressor import LinearRegressor # Import the class from the new file
 
 #comment
 parser = argparse.ArgumentParser()
