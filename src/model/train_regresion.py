@@ -1,13 +1,12 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, TensorDataset
 import wandb
 import argparse
 import os
-from src.model.linear_regressor import LinearRegressor # Import the class from the new file
 
-#comment
+# comment
 parser = argparse.ArgumentParser()
 parser.add_argument('--IdExecution', type=str, help='ID of the execution')
 args = parser.parse_args()
@@ -20,6 +19,15 @@ else:
 # Device configuration
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("Device: ", device)
+
+# Definición de la clase LinearRegressor AL PRINCIPIO del archivo
+class LinearRegressor(nn.Module):
+    def __init__(self, input_dim, output_dim):
+        super(LinearRegressor, self).__init__()
+        self.linear = nn.Linear(input_dim, output_dim)
+
+    def forward(self, x):
+        return self.linear(x)
 
 
 def read_regression(data_dir, split):
@@ -126,8 +134,7 @@ def train_and_log_regression(config, experiment_id='99'):
         model_config = model_artifact.metadata
         config.update(model_config)
 
-        # Assuming your LinearRegressor class is defined as in the previous response
-        from __main__ import LinearRegressor # Import the class if it's in the same script
+        # Instancia la clase LinearRegressor directamente ya que está definida aquí
         model = LinearRegressor(**model_config)
         model.load_state_dict(torch.load(model_path))
         model = model.to(device)
@@ -160,27 +167,10 @@ def evaluate_and_log_regression(experiment_id='99', config=None):
         model_path = os.path.join(model_dir, "trained_linear_regression_model.pth")
         model_config = model_artifact.metadata
 
-        from __main__ import LinearRegressor # Import the class if it's in the same script
+        # Instancia la clase LinearRegressor directamente ya que está definida aquí
         model = LinearRegressor(**model_config)
         model.load_state_dict(torch.load(model_path))
         model.to(device)
 
         criterion = nn.MSELoss()
-        avg_loss = evaluate_regression(model, test_loader, criterion)
-
-        run.summary.update({"loss": avg_loss})
-        wandb.log({"test/loss": avg_loss})
-        print(f"Test Loss: {avg_loss:.6f}")
-
-epochs = [50, 100, 200]
-learning_rates = [0.01, 0.001]
-for id, epoch in enumerate(epochs):
-    for lr_id, lr in enumerate(learning_rates):
-        experiment_id = f"{id}-{lr_id}"
-        train_config = {"batch_size": 32, # Adjust batch size as needed
-                        "epochs": epoch,
-                        "batch_log_interval": 10,
-                        "optimizer": "Adam",
-                        "learning_rate": lr}
-        trained_model = train_and_log_regression(train_config, experiment_id)
-        evaluate_and_log_regression(experiment_id)
+        avg_loss = evaluate_regression(model,
