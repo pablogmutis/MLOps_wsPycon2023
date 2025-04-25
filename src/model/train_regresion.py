@@ -7,7 +7,7 @@ import argparse
 import wandb
 from .linear_regressor import LinearRegressor
 
-#comments
+#comment
 parser = argparse.ArgumentParser()
 parser.add_argument('--IdExecution', type=str, help='ID of the execution')
 args = parser.parse_args()
