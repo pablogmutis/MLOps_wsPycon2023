@@ -5,7 +5,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import os
 import argparse
 import wandb
-from .linear_regressor import LinearRegressor
+from src.model.linear_regressor import LinearRegressor
 
 #comment
 parser = argparse.ArgumentParser()
